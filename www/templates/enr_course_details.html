@@ -1,0 +1,77 @@
+<ion-view class="course-detail" view-title="">
+
+  <ion-nav-buttons side="secondary">
+	<button class="button" ng-class="{'button-positive':course.enrolled.status == 'In-Progress' || course.enrolled.status == 'Not Started','button-assertive':course.enrolled.status == 'Fail','button-balanced':course.enrolled.status == 'Pass'}">{{getTopBtnLabel(course.enrolled.status)}} <span class="top-btn-tag badge">{{course.enrolled.status}}</span></button>
+	<a class="button icon ion-android-more-vertical" ng-click="openMenu($event)"></a>
+  </ion-nav-buttons>
+  
+  <ion-content>
+	
+	<div class="list card">
+	  
+	  <h3 class="padding">{{course.title}}</h3>
+	  <ion-item class="item-avatar item-icon-right">
+		<img src="img/author.png">
+		<h2>Course Author</h2>
+		<p>Joseph Anthony Winters</p>
+		<i class="icon ion-ios-arrow-right"></i>
+	  </ion-item>
+	  <ion-item class="item-body">
+		<a href="javascript:;" class="subdued positive ion-android-share-alt" ng-click="openShareModal()"> Share</a>
+		<a href="javascript:;" class="pull-right subdued positive ion-connection-bars" ng-click="openShareModal()"> Course Statistics</a>
+		<img class="full-image" ng-src="img/{{course.img}}_full.jpg" alt="{{course.title}}">
+		<a href="javascript:;" class="subdued positive ion-chatbox" ng-click="openReviewsModal()"> {{course.reviews.total}} Reviews</a>
+		<span class="pull-right subdued"><i ng-repeat="r in getNumber(course.reviews.average_rate) track by $index" class="ion-star assertive"></i></span>
+	  </ion-item>
+	  
+	  <ion-item>
+			<div class="row padding-0">
+			  <div class="col padding-0">
+				<p>Course status:<br><small>{{course.enrolled.status}}</small></p>
+				<hr>
+				<p>Total time spent in course:<br><small>6 hours</small></p>
+				<hr>
+				<p>Last access:<br><small>Jan. 04, 2015. 12:00 AM</small></p>
+			  </div>
+			  <div class="col padding-0">
+				<span class="item-note">
+					<div class="c100 p{{course.enrolled.percentage}}" ng-class="{'green':course.enrolled.status == 'Pass', 'orange':course.enrolled.status == 'Fail'}">
+					  <span ng-show="{{course.enrolled.status == 'In-Progress' || course.enrolled.status == 'Not Started'}}">{{course.enrolled.percentage}}%</span>
+					  <span ng-class="{'ion-trophy balanced':course.enrolled.status == 'Pass','ion-sad-outline assertive':course.enrolled.status == 'Fail'}" ng-show="{{course.enrolled.status != 'In-Progress'}}"></span>
+					  <div class="slice">
+						<div class="cBar"></div>
+						<div class="fill"></div>
+					  </div>
+					</div>
+				</span>
+			  </div>
+			</div>
+	  </ion-item>
+	  
+	  <ion-list>
+
+		<ion-item class="item-icon-right">
+			Course Information
+			<i class="icon ion-ios-arrow-right"></i>
+		</ion-item>
+		<ion-item class="item-icon-right">
+			Table of Contents
+			<i class="icon ion-ios-arrow-right"></i>
+		</ion-item>
+		<ion-item class="item-icon-right">
+			Material & Files
+			<i class="icon ion-ios-arrow-right"></i>
+		</ion-item>
+		<ion-item class="item-icon-right">
+			Discussions
+			<i class="icon ion-ios-arrow-right"></i>
+		</ion-item>
+		<ion-item class="item-icon-right">
+			Recommendations
+			<i class="icon ion-ios-arrow-right"></i>
+		</ion-item>
+	  </ion-list>
+	</div>
+	
+  </ion-content>
+</ion-view>

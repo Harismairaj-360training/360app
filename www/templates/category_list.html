@@ -1,0 +1,18 @@
+<ion-view view-title="Categories" class="category-list">
+  
+  <ion-nav-buttons side="secondary">
+	<a class="button button-clear icon ion-android-more-vertical" ng-click="openMenu($event)"></a>
+  </ion-nav-buttons>
+  
+  <ion-content>
+	<ion-refresher on-refresh="refreshCategoryList()"></ion-refresher>
+    <ion-list>
+      <ion-item ng-repeat="category in categories" ng-click="onCategory(category)" class="item-icon-right">
+		<img ng-src="img/{{category.img}}.png">
+		<h2>{{category.title}}</h2>
+		<i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+</ion-view>

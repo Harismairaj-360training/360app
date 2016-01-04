@@ -1,0 +1,54 @@
+<ion-view class="course-list" view-title="Enrolled Courses">
+  
+  <ion-nav-buttons side="secondary">
+	<a class="button button-clear icon ion-android-more-vertical" ng-click="openMenu($event)"></a>
+  </ion-nav-buttons>
+  
+  <div class="tabs tabs-top tabs-striped">
+	  <a class="tab-item" ng-class="c[0]" ng-click="subHeadFilter(0)">All</a>
+      <a class="tab-item" ng-class="c[1]" ng-click="subHeadFilter(1)">In-Progress</a>
+      <a class="tab-item" ng-class="c[2]" ng-click="subHeadFilter(2)">Pass</a>
+      <a class="tab-item" ng-class="c[3]" ng-click="subHeadFilter(3)">Fail</a>
+  </div>
+
+  <ion-content class="has-subheader">
+	<ion-refresher on-refresh="refreshCourseList()"></ion-refresher>
+    <ion-list>
+      <ion-item ng-repeat="course in courses" class="item-thumbnail-left item-icon-right" ng-class="{'heart': course.isItfav}" ng-click="onCourse(course)" ng-init="isFav(course)">
+		<!-- <img ng-src="img/{{course.img}}_thumbnail.jpg" alt="{{course.title}}"> --></img>
+		<div class="c100 tiny p{{course.enrolled.percentage}}" ng-class="{'green':course.enrolled.status == 'Pass', 'orange':course.enrolled.status == 'Fail'}">
+		  <span ng-show="{{course.enrolled.status == 'In-Progress' || course.enrolled.status == 'Not Started'}}">{{course.enrolled.percentage}}%</span>
+		  <span ng-class="{'ion-trophy balanced':course.enrolled.status == 'Pass','ion-sad-outline assertive':course.enrolled.status == 'Fail'}" ng-show="{{course.enrolled.status != 'In-Progress'}}"></span>
+		  <div class="slice">
+			<div class="cBar"></div>
+			<div class="fill"></div>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col"><h2>{{course.title}}</h2></div>
+		</div>
+		<div class="row">
+		  <div class="col">
+			<p>{{course.desc}}</p>
+			<p>
+				<small>{{course.enrolled.status}}</small> |
+				<small><i class="ion-chatbox"></i> {{course.reviews.total}} Reviews</small>
+			</p>
+		  </div>
+		  <!-- <div class="col col-10">
+			<span class="badge" ng-class="{'badge-progress':course.enrolled.status == 'In-Progress', 'badge-assertive':course.enrolled.status == 'Fail', 'badge-balanced':course.enrolled.status == 'Pass'}">
+				<small ng-class="{'hide':course.enrolled.status != 'In-Progress'}">{{course.enrolled.percentage}}%</small>
+				{{course.enrolled.status}}
+				<div style="width:{{course.enrolled.percentage}}%" ng-class="{'badge-progress-bar':course.enrolled.status == 'In-Progress','hide':course.enrolled.status != 'In-Progress'}"></div>
+			</span>
+		  </div> -->
+		</div>
+		<i class="icon ion-ios-heart assertive" ng-show="course.isItfav"></i>
+		<i class="icon ion-ios-arrow-right"></i>
+		<!-- <ion-option-button class="icon-left ion-ios-heart button-dark" ng-click="doFav(course)">Favorites</ion-option-button> -->
+		<ion-option-button class="icon-left ion-ios-book button-dark">Launch</ion-option-button>
+		<ion-option-button class="icon-left ion-android-share-alt button-dark" ng-click="openShareModal()">Share</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

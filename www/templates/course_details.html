@@ -1,0 +1,54 @@
+<ion-view class="course-detail" view-title="">
+
+  <ion-nav-buttons side="secondary">
+	<a class="button button-assertive">Enroll Now <span class="top-btn-tag badge">{{course.price}}</span></a>
+	<a class="button icon ion-android-more-vertical" ng-click="openMenu($event)"></a>
+  </ion-nav-buttons>
+  
+  <ion-content>
+	
+	<div class="list card">
+	  
+	  <h3 class="padding">{{course.title}}</h3>
+	  <ion-item class="item-avatar item-icon-right">
+		<img src="img/author.png">
+		<h2>Course Author</h2>
+		<p>Joseph Anthony Winters</p>
+		<i class="icon ion-ios-arrow-right"></i>
+	  </ion-item>
+	  <ion-item class="item-body">
+		<a href="javascript:;" class="subdued positive ion-android-share-alt" ng-click="openShareModal()"> Share</a>
+		<a href="javascript:;" class="pull-right subdued ion-ios-heart" ng-class="{'assertive': course.isItfav}" ng-click="doFav(course)"> Favorites</a>
+		<img class="full-image" ng-src="img/{{course.img}}_full.jpg" alt="{{course.title}}">
+		<a href="javascript:;" class="subdued positive ion-chatbox" ng-click="openReviewsModal()"> {{course.reviews.total}} Reviews</a>
+		<span class="pull-right subdued"><i ng-repeat="r in getNumber(course.reviews.average_rate) track by $index" class="ion-star assertive"></i></span>
+	  </ion-item>
+	  <ion-list>
+		<ion-item class="item-text-wrap">
+			<p>{{course.desc}}</p>
+		</ion-item>
+		<ion-item>
+			Course Delivery
+			<span class="item-note">Online Interactive</span>
+		</ion-item>
+		<ion-item>
+			Credit Hours
+			<span class="item-note">30</span>
+		</ion-item>
+		<ion-item>
+			Language
+			<span class="item-note">English</span>
+		</ion-item>
+		<ion-item>
+			Difficulty
+			<span class="item-note">Moderate</span>
+		</ion-item>
+		<ion-item>
+			Audience
+			<span class="item-note">Construction Industry Employees</span>
+		</ion-item>
+	  </ion-list>
+	</div>
+	
+  </ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Log in</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLoginModal()">Cancel</button>
+    </div>
+  </ion-header-bar>
+  <ion-content scroll="false" overflow-scroll="true" padding="true">
+        <form class="list">
+            <div style="width: 300px; height: 109px;" class="spacer"></div>
+            <ion-list>
+                <label class="item item-input">
+                    <input placeholder="Username" type="text">
+                </label>
+                <label class="item item-input">
+                    <input placeholder="Password" type="password">
+                </label>
+            </ion-list>
+            <div style="height: 40px;" class="spacer"></div>
+            <a class="button button-assertive button-block icon-right ion-android-arrow-forward" href="javascript:;">Log in</a>
+        </form>
+  </ion-content>
+</ion-modal-view>
